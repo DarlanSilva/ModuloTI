@@ -3,8 +3,6 @@ package br.com.senac.moduloTI.Controller;
 import br.com.senac.moduloTI.Entity.Login;
 import br.com.senac.moduloTI.Repository.LoginRepository;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -28,7 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Darlan.Silva
  */
 @Controller
-@RequestMapping("/ModuloTI")
+@RequestMapping("/TechMode")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class LoginController {
 
@@ -37,7 +35,7 @@ public class LoginController {
 
     @Autowired
     private SessionAtribute sessionAtribute;
-
+    
     @GetMapping("/Login")
     @PostMapping("/Login")
     public ModelAndView loginForm() {
@@ -67,18 +65,25 @@ public class LoginController {
             session.setAttribute("sessionAtribute", sessionAtribute);
         }
 
-        return new ModelAndView("redirect:/ModuloTI/Home");
+        return new ModelAndView("redirect:/TechMode/Painel/Chamados");
     }
 
-    @GetMapping("/{id}/editar")
+    @GetMapping("/Logout")
+    public ModelAndView logout() {
+        ModelAndView mv = new ModelAndView("home");
+
+        return mv;
+    }
+
+    @GetMapping("/{id}/Editar")
     public ModelAndView editar(@PathVariable("id") Integer id) {
         Optional<Login> User = loginRepo.findById(id);
         Login login = User.get();
 
         return new ModelAndView("login/login-cadastro").addObject("User", login);
     }
-    
-    @PostMapping("/salvar")
+
+    @PostMapping("/Salvar")
     public ModelAndView salvar(@ModelAttribute("login") @Valid Login login, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
@@ -91,10 +96,10 @@ public class LoginController {
         if (verificarLogin.isPresent() == true) {
             verificarLogin.get().setDhAlteracao(LocalDateTime.now());
         }
-        
-        loginRepo.save(verificarLogin.get());        
 
-        return new ModelAndView("redirect:/ModuloTI/Home");
+        loginRepo.save(verificarLogin.get());
+
+        return new ModelAndView("redirect:/TechMode/Painel/Chamados");
 
     }
 

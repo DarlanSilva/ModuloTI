@@ -2,12 +2,17 @@ package br.com.senac.moduloTI.Entity;
 
 import br.com.senac.moduloTI.Configuration.SecurityConfig;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import org.springframework.context.annotation.Scope;
@@ -39,6 +44,10 @@ public class Login implements UserDetails {
     @NotBlank(message = "CAMPO SENHA OBRIGATÓRIO")
     @Column(name = "DS_SENHA")
     private String hashSenha;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "TS_LOGIN_PERMISSAOACESSO")
+    private List<Permissao> permissaoAcesso = new ArrayList<Permissao>();
 
     @Column(name = "TG_INATIVO")
     private int inativo;
@@ -91,6 +100,14 @@ public class Login implements UserDetails {
         }
     }
 
+    public List<Permissao> getPermissaoAcesso() {
+        return permissaoAcesso;
+    }
+
+    public void setPermissaoAcesso(List<Permissao> permissaoAcesso) {
+        this.permissaoAcesso = permissaoAcesso;
+    }
+
     public int getInativo() {
         return inativo;
     }
@@ -115,6 +132,11 @@ public class Login implements UserDetails {
         this.dhAlteracao = dhAlteracao;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.permissaoAcesso;
+    }
+    
     @Override
     public String getPassword() {
         return getHashSenha();
@@ -143,10 +165,5 @@ public class Login implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

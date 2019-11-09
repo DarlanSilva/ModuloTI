@@ -53,21 +53,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/ModuloTI/Login/**",
+                .antMatchers("/TechMode/Login/**",
                             "*/css/**",
                             "*/img/**",
                             "*/js/**").permitAll()
-                .antMatchers("/ModuloTI/Home/**").authenticated()
+                .antMatchers("/TechMode/Painel/**").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/ModuloTI/Login/")
+                .loginPage("/TechMode/Login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/ModuloTI/Login/Sucess").permitAll()
-                .failureUrl("/ModuloTI/Login")
+                .defaultSuccessUrl("/TechMode/Sucess").permitAll()
+                .failureUrl("/TechMode/Login")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/Logout"))
-                .logoutSuccessUrl("/ModuloTI/Home")
+                .logoutSuccessUrl("/TechMode/Login")
                 .invalidateHttpSession(true).deleteCookies("JSESSIONID")
                 .and()
                 .exceptionHandling().accessDeniedPage("/erro/403");

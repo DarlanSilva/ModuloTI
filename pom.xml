@@ -83,7 +83,7 @@
             <version>0.7.0</version>
         </dependency>
         
-            <!-- dependencias do guava (cache) -->
+        <!-- dependencias do guava (cache) -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -91,10 +91,15 @@
         </dependency>
         
         <dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-context-support</artifactId>
-	    <version>4.0.9.RELEASE</version>
-	</dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.0.9.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
