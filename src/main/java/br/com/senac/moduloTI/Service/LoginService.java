@@ -20,8 +20,8 @@ public class LoginService  implements UserDetailsService {
     private LoginRepository loginRepository;
     
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Login> usuario = loginRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Optional<Login> usuario = loginRepository.findByLogin(login);
         
         if(usuario.isPresent() == false){
             throw new UsernameNotFoundException("Usuário não encontrado");

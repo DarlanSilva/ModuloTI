@@ -26,23 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public static final String[] PERMIT_ALL = {
-        "/Carrinho/**",
-        "/cerveja/**",
-        "/Cliente/**",
-        "/Endereco/**",
-        "/Home/**",
-        "/Login/**",
-        "/css/**",
-        "/img/**",
-        "/js/**"
-
-    };
-
-    public static final String[] ADMIN_ONLY = {
-        "/BackOffice/**"
-    };
-
     public static PasswordEncoder plainPasswordEncoder() {
         return new PasswordEncoder() {
 
@@ -81,9 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/ModuloTI/Login/Sucess").permitAll()
-                //.failureUrl("/OpenBeer/Home")
+                .failureUrl("/ModuloTI/Login")
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/Logout"))
                 .logoutSuccessUrl("/ModuloTI/Home")
                 .invalidateHttpSession(true).deleteCookies("JSESSIONID")
                 .and()
