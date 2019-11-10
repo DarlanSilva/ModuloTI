@@ -115,10 +115,10 @@
                                     <i class="fas fa-table"></i>Técnicos</a>
                                 <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                     <li>
-                                        <a data-th-href="@{/TechMode/Tecnico/Consultar-Tecnico}">Consultar Técnicos</a>
+                                        <a data-th-href="@{/TechMode/Painel/Consultar-Tecnico}">Consultar Técnicos</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/TechMode/Tecnico/Cadastrar-Tecnico}">Cadastrar Técnicos</a>
+                                        <a data-th-href="@{/TechMode/Painel/Cadastrar-Tecnico}">Cadastrar Técnicos</a>
                                     </li>
                                 </ul>
                             </li>
@@ -205,10 +205,10 @@
                                     <i class="fas fa-table"></i>Técnicos</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a data-th-href="@{/TechMode/Tecnico/Consultar-Tecnico}">Consultar Técnicos</a>
+                                        <a data-th-href="@{/TechMode/Painel/Consultar-Tecnico}">Consultar Técnicos</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/TechMode/Tecnico/Cadastrar-Tecnico}">Cadastrar Técnicos</a>
+                                        <a data-th-href="@{/TechMode/Painel/Cadastrar-Tecnico}">Cadastrar Técnicos</a>
                                     </li>
                                 </ul>
                             </li>
@@ -271,6 +271,7 @@
                                 <div class="col-md-12">
                                     <!-- DATA TABLE -->
                                     <h3 class="title-5 m-b-35">Técnicos</h3>
+                                    <div data-th-if="${mensagemSucesso != null}" data-th-text="${mensagemSucesso}" class="alert alert-success" role="alert"></div>
                                     <div class="table-data__tool">
                                         <div class="table-data__tool-left">
                                             <!-- <div class="rs-select2--light rs-select2--md">
@@ -282,27 +283,24 @@
                                                 </select>
                                                 <div class="dropDownSelect2"></div>
                                             </div> -->
-                                            <div class="rs-select2--light rs-select2--sm">
-                                                <select class="js-select2" name="time">
-                                                    <option selected="selected">Hoje</option>
-                                                    <option value="">3 Dias</option>
-                                                    <option value="">1 Semana</option>
-                                                </select>
+                                            <div class="rs-select2--light rs-select2--md2">
+                                                <input type="text" id="text-input" name="text-input" placeholder="Buscar pelo nome" class="form-control">
                                                 <div class="dropDownSelect2"></div>
-                                            </div>
+                                            </div>                                                                                                    
                                             <button class="au-btn-filter">
-                                                <i class="zmdi zmdi-filter-list"></i>Filtrar</button>
+                                                <a class="zmdi zmdi-search" data-th-value="@{/TechMode/Painel/{busca}/Consultar-Tecnico}">  </a>
+                                                Buscar</button>                                                
                                         </div>
                                         <div class="table-data__tool-right">
-                                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                                <i class="zmdi zmdi-plus"></i>Cadastrar Técnico</button>
+                                            <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-th-href="@{/TechMode/Painel/Cadastrar-Tecnico}">                                                
+                                                <a style="color: #ffffff" class="zmdi zmdi-plus" data-th-href="@{/TechMode/Painel/Cadastrar-Tecnico}"> Cadastrar Técnico </a> </button>
                                         </div>
                                     </div>
                                     <div class="table-responsive table-responsive-data2">
-                                        <table class="table table-data2">
+                                        <table class="table table-data5">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                   <!-- <th>ID</th> -->
                                                     <th>Nome</th>
                                                     <th>E-mail</th>
                                                     <th>RG</th>
@@ -312,18 +310,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="tr-shadow">
-                                                    <td>1</td>
-                                                    <td class="desc">Titulo Chamando</td>
+                                                <tr class="tr-shadow" data-th-each="tecnico : ${tecnico}">
+                                                    <!-- <td data-th-text="${tecnico.id}"> </td> -->
+                                                    <td class="desc" data-th-text="${tecnico.nome}"> </td>
                                                     <td>
-                                                        <span class="block-email">lori@example.com</span>
+                                                        <span class="block-email" data-th-text="${tecnico.email}"> </span>
                                                     </td>
-                                                    <td>2018-09-27</td>
-                                                    <td>2018-09-27</td>
+                                                    <td data-th-text="${tecnico.rg}"> </td>
+                                                    <td data-th-text="${tecnico.cpf}"> </td>
                                                     <td>
-                                                        <span class="status--process">Processed</span>
+                                                        <span class="status--process" data-th-text="${tecnico.contato}"> </span>
                                                     </td>
-                                                    <td>Técnico</td>
+                                                    <td data-th-text="${tecnico.equipe}"> </td>
                                                     <td>
                                                         <div class="table-data-feature">
                                                             <button class="item" data-toggle="tooltip" data-placement="top"
@@ -331,8 +329,8 @@
                                                                 <i class="zmdi zmdi-mail-send"></i>
                                                             </button>
                                                             <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Editar">
-                                                                <i class="zmdi zmdi-edit"></i>
+                                                                    title="Editar">                                                                
+                                                                <a style="color: #666666" class="zmdi zmdi-edit" data-th-href="@{/TechMode/Painel/{id}/editar(id=${tecnico.id})}"> </a>
                                                             </button>
                                                             <button class="item" data-toggle="tooltip" data-placement="top"
                                                                     title="Deletar">

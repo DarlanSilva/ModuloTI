@@ -8,12 +8,14 @@ import br.com.senac.moduloTI.Repository.TecnicoRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.Cacheable;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,7 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 
 @Controller
-@RequestMapping("/TechMode/Tecnico")
+@RequestMapping("/TechMode/Painel")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class TecnicoController {
     
@@ -40,8 +42,8 @@ public class TecnicoController {
     @GetMapping("/Consultar-Tecnico")
     public ModelAndView consultar(){
         List<Tecnico> tech = tecnicoRepository.findAll();
-        return new ModelAndView ("techMode/consultar-tech");
-                //.addObject("tecnico", tech);
+        return new ModelAndView ("techMode/consultar-tech")
+                .addObject("tecnico", tech);
     }
     
     @PostMapping("/salvar")
@@ -66,9 +68,33 @@ public class TecnicoController {
         tecnicoRepository.save(tech);
         
         redirectAttributes.addFlashAttribute("mensagemSucesso",
-                "Tecnico " + tech.getNome() + " cadastrado com sucesso");
+                "Tecnico " + tech.getNome() + " cadastrado com sucesso!");
         
-        return new ModelAndView("redirect:/TechMode/Tecnico/Consultar-Tecnico");
+        return new ModelAndView("redirect:/TechMode/Painel/Consultar-Tecnico");
+    }
+    
+    @GetMapping("/{id}/editar")
+    public ModelAndView editar(@PathVariable("id") Integer id) {
+        Optional<Tecnico> listTecnico = tecnicoRepository.findById(id);
+        Tecnico tecnico = listTecnico.get();
+        
+        return new  ModelAndView("techMode/cadastrar-tech")
+                .addObject("tecnico", tecnico);
+    }
+    
+    @GetMapping("/{busca}/Consultar-Tecnico")
+    public ModelAndView buscarTecnico(@PathVariable ("busca") String busca){
+        List<Tecnico> tecnico;
+        
+        if (busca == null || busca.trim().isEmpty()) {
+            tecnico = tecnicoRepository.findAll();
+        } else {
+             tecnico = tecnicoRepository.findByNome(busca);
+        }
+        
+        ModelAndView mv = new ModelAndView("techMode/consultar-tech");
+        mv.addObject("tecnico", tecnico);
+        return mv;
     }
     
 }

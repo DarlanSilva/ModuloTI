@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -35,12 +36,12 @@ public class Tecnico {
     private String rg;
 
     @Column(name = "CPF")
-    @Size(min = 1, max = 11)
-    @NotBlank(message = "CPF É UM CAMPO OBRIGATÓRIO")
+    //@Size(min = 1, max = 11)
+    @NotNull(message = "CPF É UM CAMPO OBRIGATÓRIO")
     private int cpf;
 
     @Column(name = "CONTATO")
-    @NotBlank(message = "CONTATO É UM CAMPO OBRIGATÓRIO")
+    @NotNull(message = "CONTATO É UM CAMPO OBRIGATÓRIO")
     private int contato;
 
     @Column(name = "DS_EMAIL")
