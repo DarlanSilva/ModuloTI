@@ -10,7 +10,7 @@
         <meta name="keywords" content="Tech Mode">
 
         <!-- Title Page-->
-        <title>Tech Mode - Dashboard</title>
+        <title>Tech Mode - Técnicos</title>
 
         <!-- Fontfaces CSS-->
         <link data-th-href="@{/css/font-face.css}" rel="stylesheet" media="all">
@@ -268,86 +268,100 @@
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <!-- DATA TABLE -->
-                                    <h3 class="title-5 m-b-35">Chamados</h3>
-                                    <div class="table-data__tool">
-                                        <div class="table-data__tool-left">
-                                            <div class="rs-select2--light rs-select2--md">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">Prioridade</option>
-                                                    <option value="">Baixa</option>
-                                                    <option value="">Média</option>
-                                                    <option value="">Alta</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                            <div class="rs-select2--light rs-select2--sm">
-                                                <select class="js-select2" name="time">
-                                                    <option selected="selected">Hoje</option>
-                                                    <option value="">3 Dias</option>
-                                                    <option value="">1 Semana</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                            <button class="au-btn-filter">
-                                                <i class="zmdi zmdi-filter-list"></i>Filtrar</button>
+
+
+
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong>Cadastrar Técnico</strong>
                                         </div>
-                                        <div class="table-data__tool-right">
-                                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                                <i class="zmdi zmdi-plus"></i>Adicionar Chamado</button>
+
+                                        <div class="card-body card-block">
+                                            <form data-th-action="@{/TechMode/Tecnico/salvar}" method="POST" data-th-object="${tecnico}" enctype="multipart/form-data" class="form-horizontal">
+
+                                                <div class="row form-group">
+                                                    <div class="col col-md-2">
+                                                        <label for="text-input" class=" form-control-label">Nome*</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" id="text-input" name="text-input" placeholder="Digite o nome completo" class="form-control" data-th-classappend="${#fields.hasErrors('nome')}? is-invalid" data-th-field="*{nome}">
+                                                        <small class="form-text text-muted">Nome completo</small>
+                                                        <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('nome')}" data-th-errors="*{nome}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group">
+                                                    <div class="col col-md-2">
+                                                        <label for="email-input" class=" form-control-label">RG*</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" id="text-input" name="text-input" placeholder="Digite o RG" class="form-control" data-th-classappend="${#fields.hasErrors('rg')}? is-invalid" data-th-field="*{rg}">
+                                                        <small class="help-block form-text">RG</small>
+                                                        <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('rg')}" data-th-errors="*{rg}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group">
+                                                    <div class="col col-md-2">
+                                                        <label for="email-input" class=" form-control-label">CPF*</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" id="email-input" name="email-input" placeholder="Digite o CPF" class="form-control" data-th-classappend="${#fields.hasErrors('cpf')}? is-invalid" data-th-field="*{cpf}">
+                                                        <small class="help-block form-text">CPF</small>
+                                                        <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('cpf')}" data-th-errors="*{cpf}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group">
+                                                    <div class="col col-md-2">
+                                                        <label for="email-input" class=" form-control-label">Contato*</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="tel" id="email-input" name="email-input" placeholder="Digite o Nº de telefone" class="form-control" data-th-classappend="${#fields.hasErrors('contato')}? is-invalid" data-th-field="*{contato}">
+                                                        <small class="help-block form-text">Telefone Móvel</small>
+                                                        <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('contato')}" data-th-errors="*{contato}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group">
+                                                    <div class="col col-md-2">
+                                                        <label for="email-input" class=" form-control-label">E-mail*</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="email" id="email-input" name="email-input" placeholder="Digite o e-mail" class="form-control" data-th-classappend="${#fields.hasErrors('email')}? is-invalid" data-th-field="*{email}">
+                                                        <small class="help-block form-text">E-mail corporativo</small>
+                                                        <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group">
+                                                    <div class="col col-md-2">
+                                                        <label for="email-input" class=" form-control-label">Equipe*</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" id="email-input" name="email-input" placeholder="Digite o nome da equipe" class="form-control" data-th-classappend="${#fields.hasErrors('equipe')}? is-invalid" data-th-field="*{equipe}">
+                                                        <small class="help-block form-text">Equipe</small>
+                                                        <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('equipe')}" data-th-errors="*{equipe}">
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-dot-circle-o"></i> Cadastrar
+                                                    </button>
+                                                    <button type="reset" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-ban"></i> Limpar
+                                                    </button>
+                                                </div>
+                                            </form>
+
                                         </div>
-                                    </div>
-                                    <div class="table-responsive table-responsive-data2">
-                                        <table class="table table-data2">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Titulo</th>
-                                                    <th>Responsável</th>
-                                                    <th>Dt.Abertura</th>
-                                                    <th>Dt.Enceramento</th>
-                                                    <th>Status</th>
-                                                    <th>Técnico</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="tr-shadow">
-                                                    <td>1</td>
-                                                    <td class="desc">Titulo Chamando</td>
-                                                    <td>
-                                                        <span class="block-email">lori@example.com</span>
-                                                    </td>
-                                                    <td>2018-09-27</td>
-                                                    <td>2018-09-27</td>
-                                                    <td>
-                                                        <span class="status--process">Processed</span>
-                                                    </td>
-                                                    <td>Técnico</td>
-                                                    <td>
-                                                        <div class="table-data-feature">
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Enviar e-mail">
-                                                                <i class="zmdi zmdi-mail-send"></i>
-                                                            </button>
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Editar">
-                                                                <i class="zmdi zmdi-edit"></i>
-                                                            </button>
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Deletar">
-                                                                <i class="zmdi zmdi-delete"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="spacer"></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- END DATA TABLE -->
+
+                                    </div>                                
                                 </div>
+
+
+
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
