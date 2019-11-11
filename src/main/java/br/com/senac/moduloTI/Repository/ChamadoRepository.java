@@ -20,17 +20,17 @@ public interface ChamadoRepository extends JpaRepository<Chamado, Integer>{
     @Query("Select c from Chamado c left join Tecnico t on t.id = c.tecnico.id left join StatusChamado s on s.id = c.statusChamado.id")
     public List<Chamado> findAllChamados();
     
-     @Query("Select c from Chamado c left join Tecnico t on t.id = c.tecnico.id left join StatusChamado s on s.id = c.statusChamado.id"
+    @Query("Select c from Chamado c left join Tecnico t on t.id = c.tecnico.id left join StatusChamado s on s.id = c.statusChamado.id"
              + " where c.dhInclusao >= :dhInclusaoIni and c.dhInclusao < :dhInclusaoFin")
-    public List<Chamado> findAllByDhInclusao(Date  dhInclusaoIni, Date  dhInclusaoFin);
+    public List<Chamado> findAllByDhInclusao(LocalDateTime dhInclusaoIni, LocalDateTime  dhInclusaoFin);
 
     @Query("Select c from Chamado c left join Tecnico t on t.id = c.tecnico.id left join StatusChamado s on s.id = c.statusChamado.id"
             + " where c.dhInclusao >= :dhInclusaoIni")
-    public List<Chamado> findAllByDhInclusaoIni(Date  dhInclusaoIni);
+    public List<Chamado> findAllByDhInclusaoIni(LocalDateTime  dhInclusaoIni);
 
     @Query("Select c from Chamado c left join Tecnico t on t.id = c.tecnico.id left join StatusChamado s on s.id = c.statusChamado.id"
             + " where c.dhInclusao <= :dhInclusaoFin")
-    public List<Chamado> findAllByDhInclusaoFin(Date  dhInclusaoFin);
+    public List<Chamado> findAllByDhInclusaoFin(LocalDateTime  dhInclusaoFin);
     
     
 }

@@ -10,9 +10,11 @@ import br.com.senac.moduloTI.Repository.ChamadoRepository;
 import br.com.senac.moduloTI.Repository.OrdemServicoRepository;
 import br.com.senac.moduloTI.Repository.StatusChamadoRepository;
 import br.com.senac.moduloTI.Repository.TecnicoRepository;
+import java.security.Timestamp;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -49,10 +51,10 @@ public class ChamadoController {
 
     @Autowired
     private TecnicoRepository tecnicoRepo;
-    
+
     @Autowired
     private OrdemServicoRepository osRepo;
-    
+
     @Autowired
     private MailSender sender;
 
@@ -69,16 +71,24 @@ public class ChamadoController {
         return mv;
     }
 
-    @GetMapping("/Chamados/Filtrar")
+    @PostMapping("/Chamados/Filtrar")
     public ModelAndView filtarChamado(@ModelAttribute("filterRel") FilterRel filterRel) {
+        LocalDateTime dtInicio = null;
+        LocalDateTime dtFinal = null;
+        
+        if (filterRel.getDtInicio() != null) {
+            dtInicio = filterRel.getDtInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
 
-        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-         LocalDateTime dtInicio = LocalDateTime.parse(filterRel.getDtInicio(), formatter);
-         LocalDateTime dtFinal = LocalDateTime.parse(filterRel.getDtFinal(), formatter);*/
-        Date dtInicio = Date.from(LocalDateTime.of(filterRel.getDtInicio(), LocalTime.of(0, 0, 0))
-                .atZone(ZoneId.systemDefault()).toInstant());
-        Date dtFinal = Date.from(LocalDateTime.of(filterRel.getDtFinal(), LocalTime.of(23, 59, 59))
-                .atZone(ZoneId.systemDefault()).toInstant());
+        if (filterRel.getDtFinal() != null) {
+            Date dt = filterRel.getDtFinal();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dt);
+            calendar.add(Calendar.DATE, 1);
+            dt = calendar.getTime();
+
+            dtFinal = dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
 
         List<Chamado> listaChamados;
 
@@ -90,12 +100,11 @@ public class ChamadoController {
             listaChamados = chamadoRepo.findAllByDhInclusaoFin(dtFinal);
         } else {
             listaChamados = chamadoRepo.findAllChamados();
-            ;
         }
 
         FilterRel filter = new FilterRel();
         ModelAndView mv = new ModelAndView("techMode/index");
-        mv.addObject("chamado", listaChamados);
+        mv.addObject("tableData", listaChamados);
         mv.addObject("filterRel", filter);
 
         return mv;
@@ -138,12 +147,12 @@ public class ChamadoController {
             chamado.setDhInclusao(LocalDateTime.now());
             chamado.setInativo(0);
         }
-        
+
         Chamado chamadoSalvo = new Chamado();
         chamadoSalvo = chamadoRepo.save(chamado);
         getNewOS(chamadoSalvo);
         chamadoEmail(chamadoSalvo);
-        
+
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Chamado " + chamado.getTitulo() + " salvo com sucesso");
 
@@ -160,7 +169,7 @@ public class ChamadoController {
 
         return new ModelAndView("redirect:/TechMode/Painel/Chamados");
     }
-    
+
     @PostMapping("/Chamados/Enviar/E-mail")
     public ModelAndView contato(@ModelAttribute("email") @Valid SenderMail mail, BindingResult result, RedirectAttributes redirectAttributes) {
 
@@ -173,36 +182,36 @@ public class ChamadoController {
         }
         // ENVIA EMAIL DE CONTATO
         contatoMail(mail);
-        
+
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Email enviado com sucesso.");
-        
+
         return new ModelAndView("redirect:/TechMode/Painel/Chamados");
     }
-    
-    private void chamadoEmail(Chamado chamado){
+
+    private void chamadoEmail(Chamado chamado) {
         SimpleMailMessage contato = new SimpleMailMessage();
-        
+
         contato.setSubject("Acompanhamento do Chamado " + chamado.getId());
         contato.setTo(chamado.getEmailResponsavel());
         contato.setSubject("Olá " + chamado.getResponsavel());
-        contato.setText("CHAMADO NRº" + chamado.getId() + "\n" +
-                        "Segue dados do chamado referente ao assunto " + chamado.getTitulo() + "\n" + "\n"+
-                        "Status do chamado: " + chamado.getStatusChamado().getStatus() + "\n" +
-                        "Técnico resposável: " + chamado.getTecnico().getNome()+ "\n" +
-                        "Descrição do Chamado: " + chamado.getDescricao() +"\n" +
-                        "Data de abertura: " + chamado.getDhInclusao()+ "\n" +
-                        "Data de encerramento: " + chamado.getDhEncerrado()+ "\n" + "\n" +
-                        "Logo você receberá mais informação referente ao seu chamado."  +"\n" +"\n" +"\n" +"\n" +"\n" +
-                        "A TECHMODE AGRADEÇE E TENHA UM ÓTIMO DIA."+"\n" + "Atenciosamente." );
+        contato.setText("CHAMADO NRº" + chamado.getId() + "\n"
+                + "Segue dados do chamado referente ao assunto " + chamado.getTitulo() + "\n" + "\n"
+                + "Status do chamado: " + chamado.getStatusChamado().getStatus() + "\n"
+                + "Técnico resposável: " + chamado.getTecnico().getNome() + "\n"
+                + "Descrição do Chamado: " + chamado.getDescricao() + "\n"
+                + "Data de abertura: " + chamado.getDhInclusao() + "\n"
+                + "Data de encerramento: " + chamado.getDhEncerrado() + "\n" + "\n"
+                + "Logo você receberá mais informação referente ao seu chamado." + "\n" + "\n" + "\n" + "\n" + "\n"
+                + "A TECHMODE AGRADEÇE E TENHA UM ÓTIMO DIA." + "\n" + "Atenciosamente.");
         contato.setFrom("TechMode");
 
         sender.send(contato);
     }
-    
+
     private void contatoMail(SenderMail email) {
         SimpleMailMessage contato = new SimpleMailMessage();
-        
+
         contato.setSubject(email.getAssunto());
         contato.setTo(email.getEmail());
         contato.setSubject("Olá " + email.getNome());
@@ -211,17 +220,16 @@ public class ChamadoController {
 
         sender.send(contato);
     }
-    
-    private void getNewOS(Chamado chamado){
+
+    private void getNewOS(Chamado chamado) {
         OrdemServico os = new OrdemServico();
-        
+
         os.setChamado(chamado);
         os.setDhInclusao(LocalDateTime.now());
         os.setTitulo("O.S ABERTA P/ CHAMADO DE NRº " + chamado.getId());
-        
+
         osRepo.save(os);
     }
-    
 
     @ModelAttribute("statusChamado")
     public List<StatusChamado> getStatusChamado() {

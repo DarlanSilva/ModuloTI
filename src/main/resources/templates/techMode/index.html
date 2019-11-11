@@ -287,7 +287,7 @@
                                     <h3 class="title-5 m-b-35">Chamados</h3>
                                     <div data-th-if="${mensagemSucesso != null}" data-th-text="${mensagemSucesso}" class="alert alert-success" role="alert"></div>
                                     <div class="table-data__tool">
-                                        <form data-th-action="@{/TechMode/Painel/Chamados/Filtrar}" method="GET" data-th-object="${filterRel}">
+                                        <form data-th-action="@{/TechMode/Painel/Chamados/Filtrar}" method="POST" data-th-object="${filterRel}">
                                             <div class="table-data__tool-left">
                                                 <div class="row">
                                                     <div class="col">
@@ -376,7 +376,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="copyright">
-                                        <p>Copyright © 2018 Tech Mode.</p>
+                                        <p>Copyright © 2019 Tech Mode.</p>
                                     </div>
                                 </div>
                             </div>

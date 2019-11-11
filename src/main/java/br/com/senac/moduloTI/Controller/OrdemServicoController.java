@@ -9,6 +9,9 @@ import br.com.senac.moduloTI.Entity.SessionAtribute;
 import br.com.senac.moduloTI.Repository.ApontamentoRepository;
 import br.com.senac.moduloTI.Repository.OrdemServicoRepository;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -55,13 +58,81 @@ public class OrdemServicoController {
         return mv;
     }
 
-    @GetMapping("/Ordem/Servico/Relatorio")
-    public ModelAndView relatorio() {
+    @PostMapping("/Ordem/Servico/Filrar")
+    public ModelAndView filtarChamado(@ModelAttribute("filterRel") FilterRel filterRel) {
+        LocalDateTime dtInicio = null;
+        LocalDateTime dtFinal = null;
 
-        List<OrdemServico> listaOS = osRepo.findAll();
+        if (filterRel.getDtInicio() != null) {
+            dtInicio = filterRel.getDtInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
+
+        if (filterRel.getDtFinal() != null) {
+            Date dt = filterRel.getDtFinal();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dt);
+            calendar.add(Calendar.DATE, 1);
+            dt = calendar.getTime();
+
+            dtFinal = dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
+
+        List<OrdemServico> listaOS;
+
+        if (dtInicio != null && dtFinal != null) {
+            listaOS = osRepo.findAllByDhInclusao(dtInicio, dtFinal);
+        } else if (dtInicio != null && dtFinal == null) {
+            listaOS = osRepo.findAllByDhInclusaoIni(dtInicio);
+        } else if (dtInicio == null && dtFinal != null) {
+            listaOS = osRepo.findAllByDhInclusaoFin(dtFinal);
+        } else {
+            listaOS = osRepo.findAllOS();
+        }
+
+        FilterRel filter = new FilterRel();
         ModelAndView mv = new ModelAndView("techMode/ordem-servico");
         mv.addObject("tableData", listaOS);
+        mv.addObject("filterRel", filter);
 
+        return mv;
+    }
+
+    @PostMapping("/Ordem/Servico/Relatorio")
+    public ModelAndView relatorio(@ModelAttribute("filterRel") FilterRel filterRel) {
+        LocalDateTime dtInicio = null;
+        LocalDateTime dtFinal = null;
+
+        if (filterRel.getDtInicio() != null) {
+            dtInicio = filterRel.getDtInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
+
+        if (filterRel.getDtFinal() != null) {
+            Date dt = filterRel.getDtFinal();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dt);
+            calendar.add(Calendar.DATE, 1);
+            dt = calendar.getTime();
+
+            dtFinal = dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
+
+        List<OrdemServico> listaOS;
+
+        if (dtInicio != null && dtFinal != null) {
+            listaOS = osRepo.findAllByDhInclusao(dtInicio, dtFinal);
+        } else if (dtInicio != null && dtFinal == null) {
+            listaOS = osRepo.findAllByDhInclusaoIni(dtInicio);
+        } else if (dtInicio == null && dtFinal != null) {
+            listaOS = osRepo.findAllByDhInclusaoFin(dtFinal);
+        } else {
+            listaOS = osRepo.findAllOS();
+        }
+
+        FilterRel filter = new FilterRel();
+        ModelAndView mv = new ModelAndView("techMode/relatorio-os");
+        mv.addObject("tableData", listaOS);
+        mv.addObject("filterRel", filter);
+        
         return mv;
     }
 
@@ -82,10 +153,10 @@ public class OrdemServicoController {
 
         Apontamento apontamento = new Apontamento();
         apontamento.setOs(os.get());
-        apontamento.setResponsavel(sessionAtr.getLogin().getUsername());
+        apontamento.setResponsavel(sessionAtr.getLogin().getUser());
 
         mv.addObject("apontamento", apontamento);
-        
+
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Apontamento salvo com sucesso");
 
@@ -96,10 +167,10 @@ public class OrdemServicoController {
     public ModelAndView editar(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
         Optional<Apontamento> listApontamento = apontamentoRepo.findById(id);
         Apontamento apontamento = listApontamento.get();
-        
+
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Apontamento editado com sucesso");
-        
+
         return new ModelAndView("techMode/apontamento-adicionar")
                 .addObject("apontamento", apontamento);
     }

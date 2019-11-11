@@ -1,6 +1,5 @@
 package br.com.senac.moduloTI.Entity;
 
-import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -12,35 +11,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class FilterRel {
 
-    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     //@Temporal(TemporalType.DATE)
-    private LocalDate  dtInicio;
+    private Date  dtInicio;
     
-    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     //@Temporal(TemporalType.DATE)
-    private LocalDate  dtFinal;
+    private Date  dtFinal;
 
     public FilterRel() {
     }
 
-    public FilterRel(LocalDate  dtInicio, LocalDate  dtFinal) {
+    public FilterRel(Date  dtInicio, Date  dtFinal) {
         this.dtInicio = dtInicio;
         this.dtFinal = dtFinal;
     }
 
-    public LocalDate getDtInicio() {
+    public Date getDtInicio() {
         return dtInicio;
     }
 
-    public void setDtInicio(LocalDate  dtInicio) {
+    public void setDtInicio(Date  dtInicio) {
         this.dtInicio = dtInicio;
     }
 
-    public LocalDate getDtFinal() {
+    public Date getDtFinal() {
         return dtFinal;
     }
 
-    public void setDtFinal(LocalDate  dtFinal) {
+    public void setDtFinal(Date  dtFinal) {
         this.dtFinal = dtFinal;
     }
     
