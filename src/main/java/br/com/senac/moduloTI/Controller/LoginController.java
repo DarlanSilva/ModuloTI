@@ -34,6 +34,9 @@ public class LoginController {
     @Autowired
     private LoginRepository loginRepo;
 
+    @Autowired
+    private SessionAtribute sessionAtribute;
+
     @GetMapping("/Login")
     @PostMapping("/Login")
     public ModelAndView loginForm() {
@@ -45,9 +48,7 @@ public class LoginController {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
-        
-        SessionAtribute sessionAtribute = new SessionAtribute();
-        
+
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         } else {
@@ -56,6 +57,7 @@ public class LoginController {
         Optional<Login> usuario = loginRepo.findByUser(username);
         // GUARDA O USUÁRIO LOGADO NA SESSÃO
         if (usuario.isPresent() == true) {
+            System.out.println(usuario.get().getId() + usuario.get().getUser());
             sessionAtribute.setLogin(usuario.get());
         } else {
             //redirectAttributes.addFlashAttribute("mensagem", "Usúario ou Senha Inválidos!!");

@@ -75,7 +75,7 @@ public class ChamadoController {
     public ModelAndView filtarChamado(@ModelAttribute("filterRel") FilterRel filterRel) {
         LocalDateTime dtInicio = null;
         LocalDateTime dtFinal = null;
-        
+
         if (filterRel.getDtInicio() != null) {
             dtInicio = filterRel.getDtInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         }
@@ -133,6 +133,9 @@ public class ChamadoController {
     public ModelAndView salvar(@ModelAttribute("chamado")
             @Valid Chamado chamado, BindingResult result, RedirectAttributes redirectAttributes) {
 
+        Optional<Chamado> verificachamado = null;
+        Chamado chamadoSalvo = new Chamado();
+        int osCriada = 0;
         if (result.hasErrors()) {
             ModelAndView mv = new ModelAndView("techMode/chamado-adicionar");
             mv.addObject("chamado", chamado);
@@ -142,16 +145,27 @@ public class ChamadoController {
 
         //VERIFICA SE É UMA ALTERAÇÃO PARA SALVA A DATA HORA DA ALTERAÇÃO
         if (chamado.getId() != null) {
+            verificachamado = chamadoRepo.findById(chamado.getId());
             chamado.setDhAlteracao(LocalDateTime.now());
+            chamado.setDhInclusao(verificachamado.get().getDhAlteracao());
+            osCriada = 1;
         } else {
             chamado.setDhInclusao(LocalDateTime.now());
             chamado.setInativo(0);
         }
+        
+        // Chamando finalizado
+        if (chamado.getStatusChamado().getStatus().equalsIgnoreCase("FINALIZADO")) {
+            chamado.setDhEncerrado(LocalDateTime.now());
+        }
 
-        Chamado chamadoSalvo = new Chamado();
         chamadoSalvo = chamadoRepo.save(chamado);
-        getNewOS(chamadoSalvo);
-        chamadoEmail(chamadoSalvo);
+        chamado.setId(chamadoSalvo.getId());
+        chamadoEmail(chamado);
+
+        if (osCriada == 0) {
+            getNewOS(chamadoSalvo);
+        }
 
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Chamado " + chamado.getTitulo() + " salvo com sucesso");
@@ -174,9 +188,8 @@ public class ChamadoController {
     public ModelAndView contato(@ModelAttribute("email") @Valid SenderMail mail, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
-            ModelAndView mv = new ModelAndView("redirect:/OpenBeer/Home#contato");
+            ModelAndView mv = new ModelAndView("redirect:/TechMode/Painel/Chamados");
             mv.addObject("email", mail);
-
             return mv;
 
         }

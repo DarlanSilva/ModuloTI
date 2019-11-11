@@ -97,8 +97,19 @@ public class OrdemServicoController {
         return mv;
     }
 
-    @PostMapping("/Ordem/Servico/Relatorio")
+    @GetMapping("/Ordem/Servico/Relatorio")
     public ModelAndView relatorio(@ModelAttribute("filterRel") FilterRel filterRel) {
+        FilterRel filter = new FilterRel();
+        List<OrdemServico> listaOS = osRepo.findAllOS();
+        ModelAndView mv = new ModelAndView("techMode/relatorio-os");
+        mv.addObject("tableData", listaOS);
+        mv.addObject("filterRel", filter);
+
+        return mv;
+    }
+
+    @PostMapping("/Ordem/Servico/Relatorio/Filtrar")
+    public ModelAndView relatorioFiltrar(@ModelAttribute("filterRel") FilterRel filterRel) {
         LocalDateTime dtInicio = null;
         LocalDateTime dtFinal = null;
 
@@ -132,7 +143,7 @@ public class OrdemServicoController {
         ModelAndView mv = new ModelAndView("techMode/relatorio-os");
         mv.addObject("tableData", listaOS);
         mv.addObject("filterRel", filter);
-        
+
         return mv;
     }
 
@@ -141,6 +152,45 @@ public class OrdemServicoController {
         List<Apontamento> listaApontamentos = apontamentoRepo.findAll();
         ModelAndView mv = new ModelAndView("techMode/apontamento-consultar");
         mv.addObject("tableData", listaApontamentos);
+
+        return mv;
+    }
+
+    @PostMapping("/Ordem/Servico/Apontamento/Filtrar")
+    public ModelAndView apontamentoFiltrar(@ModelAttribute("filterRel") FilterRel filterRel) {
+        LocalDateTime dtInicio = null;
+        LocalDateTime dtFinal = null;
+
+        if (filterRel.getDtInicio() != null) {
+            dtInicio = filterRel.getDtInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
+
+        if (filterRel.getDtFinal() != null) {
+            Date dt = filterRel.getDtFinal();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dt);
+            calendar.add(Calendar.DATE, 1);
+            dt = calendar.getTime();
+
+            dtFinal = dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        }
+
+        List<Apontamento> listaApontamentos;
+
+        if (dtInicio != null && dtFinal != null) {
+            listaApontamentos = apontamentoRepo.findAllByDhInclusao(dtInicio, dtFinal);
+        } else if (dtInicio != null && dtFinal == null) {
+            listaApontamentos = apontamentoRepo.findAllByDhInclusaoIni(dtInicio);
+        } else if (dtInicio == null && dtFinal != null) {
+            listaApontamentos = apontamentoRepo.findAllByDhInclusaoFin(dtFinal);
+        } else {
+            listaApontamentos = apontamentoRepo.findAll();
+        }
+
+        FilterRel filter = new FilterRel();
+        ModelAndView mv = new ModelAndView("techMode/apontamento-consultar");
+        mv.addObject("tableData", listaApontamentos);
+        mv.addObject("filterRel", filter);
 
         return mv;
     }

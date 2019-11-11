@@ -25,72 +25,80 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  * @author Wesley Santos_2
  */
-
 @Controller
 @RequestMapping("/TechMode/Painel")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class TecnicoController {
-    
+
     @Autowired
     private TecnicoRepository tecnicoRepository;
-    
+
     @GetMapping("/Cadastrar-Tecnico")
-    public ModelAndView cadastroTech(){        
+    public ModelAndView cadastroTech() {
         return new ModelAndView("techMode/cadastrar-tech.html")
                 .addObject("tecnico", new Tecnico());
     }
-    
+
     @GetMapping("/Consultar-Tecnico")
-    public ModelAndView consultar(){
+    public ModelAndView consultar() {
         List<Tecnico> tech = tecnicoRepository.findAll();
-        return new ModelAndView ("techMode/consultar-tech")
+        return new ModelAndView("techMode/consultar-tech")
                 .addObject("tecnico", tech);
     }
-    
+
     @PostMapping("/salvar")
-    public ModelAndView salvar(@ModelAttribute("tecnico") @Valid Tecnico tech, BindingResult result, 
-            RedirectAttributes redirectAttributes){
-        
-        if(result.hasErrors()){
+    public ModelAndView salvar(@ModelAttribute("tecnico") @Valid Tecnico tech, BindingResult result,
+            RedirectAttributes redirectAttributes) {
+
+        if (result.hasErrors()) {
             ModelAndView mv = new ModelAndView("techMode/cadastrar-tech");
             mv.addObject("tecnico", tech);
             return mv;
         }
-        
+
         //Optional<Tecnico> verificarTecnico = tecnicoRepository.findById(tech.getId());
-        
-        
         tech.setInativo(0);
-        
+
         if (tech.getId() != null) {
             tech.setDhAlteracao(LocalDateTime.now());
-        }else{
+        } else {
             tech.setDhInclusao(LocalDateTime.now());
         }
-        
+
         tecnicoRepository.save(tech);
-        
+
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Tecnico " + tech.getNome() + " salvo com sucesso!");
-        
+
         return new ModelAndView("redirect:/TechMode/Painel/Consultar-Tecnico");
     }
-    
+
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable("id") Integer id) {
         Optional<Tecnico> listTecnico = tecnicoRepository.findById(id);
         Tecnico tecnico = listTecnico.get();
-        
-        return new  ModelAndView("techMode/cadastrar-tech")
+
+        return new ModelAndView("techMode/cadastrar-tech")
                 .addObject("tecnico", tecnico);
-    }    
-    
+    }
+
     @PostMapping("/buscarTecnico")
-    public ModelAndView buscarTecnico(@RequestParam ("buscarTecnico") String buscarTecnico){
+    public ModelAndView buscarTecnico(@RequestParam("buscarTecnico") String buscarTecnico) {
         ModelAndView mv = new ModelAndView("techMode/consultar-tech");
         mv.addObject("tecnico", tecnicoRepository.findByNome(buscarTecnico));
-        
+
         return mv;
     }
-    
+
+    @GetMapping("/{id}/Tecnico/Deletar")
+    public ModelAndView remover(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+
+        tecnicoRepository.deleteById(id);
+
+        redirectAttributes.addFlashAttribute("mensagemSucesso",
+                "Técnico excluido com sucesso");
+
+        return new ModelAndView("redirect:/TechMode/Painel/Consultar-Tecnico");
+    }
+
 }

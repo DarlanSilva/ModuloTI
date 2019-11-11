@@ -291,9 +291,9 @@
                                         </div>
                                         <div class="card-body card-block">
                                             <form data-th-action="@{/TechMode/Painel/salvar}" method="POST" data-th-object="${tecnico}" class="form-horizontal">
-                                                
+
                                                 <input type="hidden" data-th-if="*{id != null}" data-th-field="*{id}" />
-                                                
+
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
                                                         <label for="nome" class=" form-control-label">Nome*</label>
@@ -356,10 +356,13 @@
                                                 </div>
 
                                                 <div class="card-footer">
-                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                    <button data-th-if="${tecnico.id == null}" type="submit" class="btn btn-primary btn-sm">
                                                         <i class="fa fa-dot-circle-o"></i> Salvar
                                                     </button>
-                                                    <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Consultar/Apontamentos}" class="btn btn-danger btn-sm">
+                                                    <button data-th-if="${tecnico.id != null}" type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-dot-circle-o"></i> Alterar
+                                                    </button>
+                                                    <a data-th-href="@{/TechMode/Painel/Consultar-Tecnico}" class="btn btn-danger btn-sm">
                                                         <i class="fa fa-ban"></i> Cancelar
                                                     </a>
                                                 </div>

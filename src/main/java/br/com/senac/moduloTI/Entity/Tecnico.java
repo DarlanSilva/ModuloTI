@@ -35,13 +35,13 @@ public class Tecnico {
     private String rg;
 
     @Column(name = "CPF")
-    //@Size(min = 1, max = 11)
+    @Size(min = 1, max = 20)
     @NotNull(message = "CPF É UM CAMPO OBRIGATÓRIO")
-    private int cpf;
+    private String cpf;
 
     @Column(name = "CONTATO")
     @NotNull(message = "CONTATO É UM CAMPO OBRIGATÓRIO")
-    private int contato;
+    private String contato;
 
     @Column(name = "DS_EMAIL")
     @NotBlank(message = "E-MAIL É UM CAMPO OBRIGATÓRIO")
@@ -63,7 +63,7 @@ public class Tecnico {
     public Tecnico() {
     }
 
-    public Tecnico(Integer id, String nome, String rg, int cpf, int contato, String email, String equipe, int inativo, LocalDateTime dhInclusao, LocalDateTime dhAlteracao) {
+    public Tecnico(Integer id, String nome, String rg, String cpf, String contato, String email, String equipe, int inativo, LocalDateTime dhInclusao, LocalDateTime dhAlteracao) {
         this.id = id;
         this.nome = nome;
         this.rg = rg;
@@ -100,19 +100,19 @@ public class Tecnico {
         this.rg = rg;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public int getContato() {
+    public String getContato() {
         return contato;
     }
 
-    public void setContato(int contato) {
+    public void setContato(String contato) {
         this.contato = contato;
     }
 

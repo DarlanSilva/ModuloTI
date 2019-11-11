@@ -159,11 +159,11 @@
                                 </ul>
                             </li>
                             <li>
-                                 <a data-toggle="modal" data-target="#MailModal" href="#">
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
                                     <i class="fas fa-desktop"></i>Equipamentos</a>
                             </li>
                             <li>
-                                 <a data-toggle="modal" data-target="#MailModal" href="#">
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
                                     <i class="fas fa-desktop"></i>Pessoal</a>
                             </li>
                         </ul>
@@ -334,16 +334,12 @@
                                                     <td>
                                                         <div class="table-data-feature">
                                                             <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Enviar e-mail">
-                                                                <i class="zmdi zmdi-mail-send"></i>
-                                                            </button>
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
                                                                     title="Editar">                                                                
                                                                 <a style="color: #666666" class="zmdi zmdi-edit" data-th-href="@{/TechMode/Painel/{id}/editar(id=${tecnico.id})}"> </a>
                                                             </button>
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Deletar">
-                                                                <i class="zmdi zmdi-delete"></i>
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" 
+                                                               title="Deletar">
+                                                                <a class="zmdi zmdi-delete" data-th-href="@{/TechMode/Painel/{id}/Tecnico/Deletar(id=${tecnico.id})}"></a>
                                                             </button>
                                                         </div>
                                                     </td>
