@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Tech Mode">
+        <meta name="author" content="Darlan Silva">
+        <meta name="keywords" content="Tech Mode">
+
+        <!-- Title Page-->
+        <title>Tech Mode - Dashboard</title>
+
+        <!-- Fontfaces CSS-->
+        <link data-th-href="@{/css/font-face.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
+
+        <!-- Bootstrap CSS-->
+        <link data-th-href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+
+        <!-- Vendor CSS-->
+        <link data-th-href="@{/vendor/animsition/animsition.min.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/wow/animate.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/slick/slick.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
+        <link data-th-href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" media="all">
+
+        <!-- Main CSS-->
+        <link data-th-href="@{/css/theme.css}" rel="stylesheet" media="all">
+
+    </head>
+
+    <body class="animsition">
+        <div class="page-wrapper">
+            <!-- HEADER MOBILE-->
+            <header class="header-mobile d-block d-lg-none">
+                <div class="header-mobile__bar">
+                    <div class="container-fluid">
+                        <div class="header-mobile-inner">
+                            <a class="logo" data-th-href="@{/TechMode/Painel/Chamados}">
+                                <img data-th-src="@{/images/icon/logo.png}" alt="Tech Mode" />
+                            </a>
+                            <button class="hamburger hamburger--slider" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav class="navbar-mobile">
+                    <div class="container-fluid">
+                        <ul class="navbar-mobile__list list-unstyled">
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-tachometer-alt"></i>Chamados</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Chamados}">Consultar Chamados</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Chamado/Novo}">Cadastrar Chamados</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-chart-bar"></i>Ordens de Serviço</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico}">Consultar O.S</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Apontamentos}">Apontamentos</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Relatorio}">Relatório de O.S</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-table"></i>Técnicos</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Consultar-Tecnico}">Consultar Técnicos</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Cadastrar-Tecnico}">Cadastrar Técnicos</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
+                                    <i class="fas fa-desktop"></i>Equipamentos</a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
+                                    <i class="fas fa-desktop"></i>Pessoal</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- END HEADER MOBILE-->
+
+            <!-- MENU SIDEBAR-->
+            <aside class="menu-sidebar d-none d-lg-block">
+                <div class="logo">
+                    <a data-th-href="@{/TechMode/Painel/Chamados}">
+                        <img data-th-src="@{/images/icon/logo.png}" alt="Tech Mode" />
+                    </a>
+                </div>
+                <div class="menu-sidebar__content js-scrollbar1">
+                    <nav class="navbar-sidebar">
+                        <ul class="list-unstyled navbar__list">
+                            <li class="active has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-tachometer-alt"></i>Chamados</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Chamados}">Consultar Chamados</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Chamado/Novo}">Cadastrar Chamados</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="active has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-chart-bar"></i>Ordens de Serviço</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico}">Consultar O.S</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Apontamentos}">Apontamentos</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Relatorio}">Relatório de O.S</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="active has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-table"></i>Técnicos</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Consultar-Tecnico}">Consultar Técnicos</a>
+                                    </li>
+                                    <li>
+                                        <a data-th-href="@{/TechMode/Painel/Cadastrar-Tecnico}">Cadastrar Técnicos</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
+                                    <i class="fas fa-desktop"></i>Equipamentos</a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
+                                    <i class="fas fa-desktop"></i>Pessoal</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <!-- END MENU SIDEBAR-->
+
+            <!-- PAGE CONTAINER-->
+            <div class="page-container">
+                <!-- HEADER DESKTOP-->
+                <header class="header-desktop">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="header-wrap">
+                                <div class="form-header"></div>
+                                <div class="header-button">
+                                    <div class="account-wrap">
+                                        <div class="account-item clearfix js-item-menu">
+                                            <span data-sec-authorize="isAuthenticated()">
+                                                <div class="content">
+                                                    <a class="js-acc-btn" href="#"><span data-sec-authentication="name"></span></a>
+                                                </div>
+                                            </span>
+                                            <div class="account-dropdown js-dropdown">
+                                                <div class="account-dropdown__body">
+                                                    <div class="account-dropdown__item">
+                                                        <a data-th-href="@{/TechMode/Painel/{id}/Editar(id=${1})}">
+                                                            <!--(id=${atribute.login.id})}-->
+                                                            <i class="zmdi zmdi-account"></i>Conta</a>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__footer">
+                                                    <a data-th-href="@{/Logout}">
+                                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- HEADER DESKTOP-->
+
+                <!--MODAL DE ENVIO DE EMAIL-->
+                <div class="modal fade" id="MailModal" tabindex="-1" role="dialog" aria-labelledby="MailModal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mediumModalLabel">Enviar E-Mail</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form data-th-action="@{/TechMode/Painel/Chamados/Enviar/E-mail}" data-th-object="${senderMail}" method="POST" class="form-horizontal">
+                                <div class="modal-body">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="nome" class=" form-control-label">Nome</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do responsável" data-th-classappend="${#fields.hasErrors('nome')}? is-invalid" data-th-field="*{nome}">
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('nome')}" data-th-errors="*{nome}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="email" class=" form-control-label">Destinatário</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="email" name="responsavel" placeholder="E-mail do responsável" class="form-control" data-th-classappend="${#fields.hasErrors('email')}? is-invalid" data-th-field="*{email}">
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="assunto" class=" form-control-label">Assunto</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="assunto" name="assunto" placeholder="Assunto" class="form-control" data-th-classappend="${#fields.hasErrors('assunto')}? is-invalid" data-th-field="*{assunto}">
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('assunto')}" data-th-errors="*{assunto}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="mensagem" class=" form-control-label">Mensagem</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">              
+                                            <textarea name="mensagem" id="assunto" rows="9" placeholder="Mensagem" class="form-control" data-th-classappend="${#fields.hasErrors('mensagem')}? is-invalid" data-th-field="*{mensagem}"></textarea>
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('mensagem')}" data-th-errors="*{mensagem}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--END MODAL DE ENVIO DE EMAIL-->
+
+                <!-- MAIN CONTENT-->
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- DATA TABLE -->
+                                    <h3 class="title-5 m-b-35">Chamados</h3>
+                                    <div data-th-if="${mensagemSucesso != null}" data-th-text="${mensagemSucesso}" class="alert alert-success" role="alert"></div>
+                                    <div class="table-data__tool">
+                                        <form data-th-action="@{/TechMode/Painel/Chamados/Filtrar}" method="GET" data-th-object="${filterRel}">
+                                            <div class="table-data__tool-left">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        De:
+                                                        <section class="card">
+                                                            <div class="card-body text-secondary">
+                                                                <input type="date" name="date-de" id="date-de" data-th-classappend="${#fields.hasErrors('dtInicio')}? is-invalid" data-th-field="*{dtInicio}">
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                    <div class="col">
+                                                        Até:
+                                                        <section class="card">
+                                                            <div class="card-body text-secondary">
+                                                                <input type="date" name="date-ate" id="date-ate" data-th-classappend="${#fields.hasErrors('dtFinal')}? is-invalid" data-th-field="*{dtFinal}">
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                    <div class="col">
+                                                        <section class="card" style="margin-top: 25px; height: 67.9px">
+                                                            <div class="card-body text-secondary">
+                                                                <button type="submit">
+                                                                    <i class="zmdi zmdi-filter-list"></i> Filtrar</button>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="table-responsive table-responsive-data2">
+                                        <table class="table table-data2">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Titulo</th>
+                                                    <th>Tec.Responsável</th>
+                                                    <th>Qt.Horas</th>
+                                                    <th>Dt.Apontamento</th>
+                                                    <th>Nr.OS</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-th-fragment="tableBody(tableData)">
+                                                <tr class="tr-shadow" data-th-each="apontamento : ${tableData}">
+                                                    <td data-th-text="${apontamento.id}"></td>
+                                                    <td class="desc" data-th-text="${apontamento.titulo}"></td>
+                                                    <td>
+                                                        <span class="block-email" data-th-text="${apontamento.responsavel}"></span>
+                                                    </td>
+                                                    <td data-th-text="${apontamento.qtHoras}"></td>
+                                                    <td data-th-text="${#temporals.format(apontamento.dhInclusao, 'dd-MM-yyyy')}"></td>
+                                                    <td class="status--process" data-th-text="${apontamento.os.id}"></td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <button type="button" class="item" data-placement="top"
+                                                                    title="Enviar e-mail" data-toggle="modal" data-target="#MailModal">
+                                                                <i class="zmdi zmdi-mail-send"></i>
+                                                            </button>
+                                                            <a class="item" data-toggle="tooltip" data-placement="top"
+                                                               title="Editar" data-th-href="@{/TechMode/Painel/{id}/Ordem/Servico/Editar/Apontamento(id=${apontamento.id})}">
+                                                                <i class="zmdi zmdi-edit"></i>
+                                                            </a>
+                                                            <a class="item" data-toggle="tooltip" data-placement="top"
+                                                               title="Deletar"data-th-href="@{/TechMode/Painel/{id}/Ordem/Servico/Deletar/Apontamento(id=${apontamento.id})}">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="spacer"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- END DATA TABLE -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="copyright">
+                                        <p>Copyright © 2018 Tech Mode.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MAIN CONTENT-->
+                <!-- END PAGE CONTAINER-->
+            </div>
+        </div>
+
+        <!-- Jquery JS-->
+        <script data-th-src="@{/vendor/jquery-3.2.1.min.js}"></script>
+        <!-- Bootstrap JS-->
+        <script data-th-src="@{/vendor/bootstrap-4.1/popper.min.js}"></script>
+        <script data-th-src="@{/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+        <!-- Vendor JS       -->
+        <script data-th-src="@{/vendor/slick/slick.min.js}">
+        </script>
+        <script data-th-src="@{/vendor/wow/wow.min.js}"></script>
+        <script data-th-src="@{/vendor/animsition/animsition.min.js}"></script>
+        <script data-th-src="@{/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js}">
+        </script>
+        <script data-th-src="@{/vendor/counter-up/jquery.waypoints.min.js}"></script>
+        <script data-th-src="@{/vendor/counter-up/jquery.counterup.min.js}">
+        </script>
+        <script data-th-src="@{/vendor/circle-progress/circle-progress.min.js}"></script>
+        <script data-th-src="@{/vendor/perfect-scrollbar/perfect-scrollbar.js}"></script>
+        <script data-th-src="@{/vendor/chartjs/Chart.bundle.min.js}"></script>
+        <script data-th-src="@{/vendor/select2/select2.min.js}">
+        </script>
+
+        <!-- Main JS-->
+        <script data-th-src="@{/js/main.js}"></script>
+
+    </body>
+
+</html>
+<!-- end document-->

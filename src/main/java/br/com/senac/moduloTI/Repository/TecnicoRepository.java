@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface TecnicoRepository extends JpaRepository<Tecnico, Integer>{
     
-    @Query("Select t from Tecnico t where t.nome like %:nome%")
+    @Query("Select t from Tecnico t where t.nome like %?1%")
     public List<Tecnico> findByNome(String nome);
 }

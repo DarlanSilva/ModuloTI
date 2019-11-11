@@ -1,5 +1,6 @@
 package br.com.senac.moduloTI.Controller;
 
+import br.com.senac.moduloTI.Entity.SessionAtribute;
 import br.com.senac.moduloTI.Entity.Login;
 import br.com.senac.moduloTI.Repository.LoginRepository;
 import java.time.LocalDateTime;
@@ -33,9 +34,6 @@ public class LoginController {
     @Autowired
     private LoginRepository loginRepo;
 
-    @Autowired
-    private SessionAtribute sessionAtribute;
-    
     @GetMapping("/Login")
     @PostMapping("/Login")
     public ModelAndView loginForm() {
@@ -47,23 +45,23 @@ public class LoginController {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
-        String password;
-
+        
+        SessionAtribute sessionAtribute = new SessionAtribute();
+        
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
-            password = ((UserDetails) principal).getPassword();
         } else {
             username = principal.toString();
-            password = principal.toString();
         }
-
-        Optional<Login> usuario = loginRepo.findByUserAndPass(username, password);
-
+        Optional<Login> usuario = loginRepo.findByUser(username);
         // GUARDA O USUÁRIO LOGADO NA SESSÃO
         if (usuario.isPresent() == true) {
             sessionAtribute.setLogin(usuario.get());
-            session.setAttribute("sessionAtribute", sessionAtribute);
+        } else {
+            //redirectAttributes.addFlashAttribute("mensagem", "Usúario ou Senha Inválidos!!");
+            return new ModelAndView("redirect:/TechMode/Login");
         }
+        session.setAttribute("sessionAtribute", sessionAtribute);
 
         return new ModelAndView("redirect:/TechMode/Painel/Chamados");
     }
@@ -75,15 +73,15 @@ public class LoginController {
         return mv;
     }
 
-    @GetMapping("/{id}/Editar")
+    @GetMapping("/Painel/{id}/Editar")
     public ModelAndView editar(@PathVariable("id") Integer id) {
         Optional<Login> User = loginRepo.findById(id);
         Login login = User.get();
 
-        return new ModelAndView("login/login-cadastro").addObject("User", login);
+        return new ModelAndView("login/Login-Editar").addObject("login", login);
     }
 
-    @PostMapping("/Salvar")
+    @PostMapping("/Painel/Salvar")
     public ModelAndView salvar(@ModelAttribute("login") @Valid Login login, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
@@ -91,13 +89,13 @@ public class LoginController {
             mv.addObject(login);
             return mv;
         }
-        Optional<Login> verificarLogin = loginRepo.findByLogin(login.getLogin());
+        Optional<Login> verificarLogin = loginRepo.findByUser(login.getUser());
 
         if (verificarLogin.isPresent() == true) {
-            verificarLogin.get().setDhAlteracao(LocalDateTime.now());
+            login.setDhAlteracao(LocalDateTime.now());
         }
 
-        loginRepo.save(verificarLogin.get());
+        loginRepo.save(login);
 
         return new ModelAndView("redirect:/TechMode/Painel/Chamados");
 

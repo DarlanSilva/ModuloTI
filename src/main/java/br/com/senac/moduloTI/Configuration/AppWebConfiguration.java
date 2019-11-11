@@ -1,5 +1,7 @@
 package br.com.senac.moduloTI.Configuration;
 
+import br.com.senac.moduloTI.Controller.ChamadoController;
+import br.com.senac.moduloTI.Controller.OrdemServicoController;
 import java.util.concurrent.TimeUnit;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -21,7 +23,7 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
  * @author Darlan Silva
  */
 @SpringBootConfiguration
-@ComponentScan(basePackageClasses = {})
+@ComponentScan(basePackageClasses = {ChamadoController.class, OrdemServicoController.class})
 @EnableCaching
 public class AppWebConfiguration implements WebMvcConfigurer {
 
@@ -48,8 +50,8 @@ public class AppWebConfiguration implements WebMvcConfigurer {
     public MailSender mailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
-        mailSender.setUsername("Open.BeerBR@gmail.com");
-        mailSender.setPassword("Open[SENHA]");
+        mailSender.setUsername("Tech.ModeBR@gmail.com");
+        mailSender.setPassword("t5e3c3h6m7o9d3e3");
         mailSender.setPort(587);
 
         Properties mailProperties = new Properties();

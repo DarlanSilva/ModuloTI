@@ -39,7 +39,7 @@ public class Login implements UserDetails {
 
     @NotBlank(message = "EMAIL INVÁLIDO")
     @Column(unique = true, name = "DS_LOGIN")
-    private String login;
+    private String user;
 
     @NotBlank(message = "CAMPO SENHA OBRIGATÓRIO")
     @Column(name = "DS_SENHA")
@@ -61,9 +61,9 @@ public class Login implements UserDetails {
     public Login() {
     }
 
-    public Login(Integer id, String login, String hashSenha, int inativo, LocalDateTime dhInclusao, LocalDateTime dhAlteracao) {
+    public Login(Integer id, String user, String hashSenha, int inativo, LocalDateTime dhInclusao, LocalDateTime dhAlteracao) {
         this.id = id;
-        this.login = login;
+        this.user = user;
         this.hashSenha = hashSenha;
         this.inativo = inativo;
         this.dhInclusao = dhInclusao;
@@ -78,12 +78,12 @@ public class Login implements UserDetails {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUser() {
+        return user;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getHashSenha() {
@@ -144,7 +144,7 @@ public class Login implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getLogin();
+        return getUser();
     }
 
     @Override

@@ -13,9 +13,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoginRepository extends JpaRepository<Login, Integer>{
    
-    public Optional<Login> findByLogin(String login);
+    @Query("Select l from Login l where l.user = :user")
+    public Optional<Login> findByUser(String user);
     
-    @Query("Select l from Login l where l.login = :userName and l.hashSenha =:password")
+    @Query("Select l from Login l where l.user = :userName and l.hashSenha =:password")
     public Optional<Login> findByUserAndPass(String userName, String password);
    
 }

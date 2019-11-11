@@ -16,6 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  *
  * @author Darlan.Silva
  */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -64,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/TechMode/Sucess").permitAll()
-                .failureUrl("/TechMode/Login")
+                //.failureUrl("/TechMode/Login")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/Logout"))
                 .logoutSuccessUrl("/TechMode/Login")

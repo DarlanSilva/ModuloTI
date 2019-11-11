@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -58,17 +59,19 @@ public class TecnicoController {
         
         //Optional<Tecnico> verificarTecnico = tecnicoRepository.findById(tech.getId());
         
-        tech.setDhInclusao(LocalDateTime.now());
+        
         tech.setInativo(0);
         
         if (tech.getId() != null) {
             tech.setDhAlteracao(LocalDateTime.now());
+        }else{
+            tech.setDhInclusao(LocalDateTime.now());
         }
         
         tecnicoRepository.save(tech);
         
         redirectAttributes.addFlashAttribute("mensagemSucesso",
-                "Tecnico " + tech.getNome() + " cadastrado com sucesso!");
+                "Tecnico " + tech.getNome() + " salvo com sucesso!");
         
         return new ModelAndView("redirect:/TechMode/Painel/Consultar-Tecnico");
     }
@@ -80,20 +83,13 @@ public class TecnicoController {
         
         return new  ModelAndView("techMode/cadastrar-tech")
                 .addObject("tecnico", tecnico);
-    }
+    }    
     
-    @GetMapping("/{busca}/Consultar-Tecnico")
-    public ModelAndView buscarTecnico(@PathVariable ("busca") String busca){
-        List<Tecnico> tecnico;
-        
-        if (busca == null || busca.trim().isEmpty()) {
-            tecnico = tecnicoRepository.findAll();
-        } else {
-             tecnico = tecnicoRepository.findByNome(busca);
-        }
-        
+    @PostMapping("/buscarTecnico")
+    public ModelAndView buscarTecnico(@RequestParam ("buscarTecnico") String buscarTecnico){
         ModelAndView mv = new ModelAndView("techMode/consultar-tech");
-        mv.addObject("tecnico", tecnico);
+        mv.addObject("tecnico", tecnicoRepository.findByNome(buscarTecnico));
+        
         return mv;
     }
     

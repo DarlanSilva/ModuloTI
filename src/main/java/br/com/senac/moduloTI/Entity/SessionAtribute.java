@@ -1,4 +1,4 @@
-package br.com.senac.moduloTI.Controller;
+package br.com.senac.moduloTI.Entity;
 
 import br.com.senac.moduloTI.Entity.Login;
 import java.io.Serializable;
@@ -18,10 +18,10 @@ public class SessionAtribute implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private Login login;
-    
-    
-    
 
+    public SessionAtribute() {
+    }
+    
     public Login getLogin() {
         return login;
     }

@@ -42,7 +42,7 @@
                 <div class="header-mobile__bar">
                     <div class="container-fluid">
                         <div class="header-mobile-inner">
-                            <a class="logo" href="index.html">
+                            <a class="logo" data-th-href="@{/TechMode/Painel/Chamados}">
                                 <img data-th-src="@{/images/icon/logo.png}" alt="Tech Mode" />
                             </a>
                             <button class="hamburger hamburger--slider" type="button">
@@ -61,10 +61,10 @@
                                     <i class="fas fa-tachometer-alt"></i>Chamados</a>
                                 <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                     <li>
-                                        <a data-th-href="@{/index.html}">Consultar Chamados</a>
+                                        <a data-th-href="@{/TechMode/Painel/Chamados}">Consultar Chamados</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar Chamados</a>
+                                        <a data-th-href="@{/TechMode/Painel/Chamado/Novo}">Cadastrar Chamados</a>
                                     </li>
                                 </ul>
                             </li>
@@ -73,40 +73,13 @@
                                     <i class="fas fa-chart-bar"></i>Ordens de Serviço</a>
                                 <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                     <li>
-                                        <a data-th-href="@{/index.html}">Consultar O.S</a>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico}">Consultar O.S</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar O.S</a>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Apontamentos}">Apontamentos</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/index2.html}">Apontamentos</a>
-                                    </li>
-                                    <li>
-                                        <a data-th-href="@{/index2.html}">Relatório de O.S</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-table"></i>Setores</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li>
-                                        <a data-th-href="@{/index.html}">Consultar Setores</a>
-                                    </li>
-                                    <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar Setores</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-table"></i>Equipes</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li>
-                                        <a data-th-href="@{/index.html}">Consultar Equipes</a>
-                                    </li>
-                                    <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar Equipes</a>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Relatorio}">Relatório de O.S</a>
                                     </li>
                                 </ul>
                             </li>
@@ -123,12 +96,12 @@
                                 </ul>
                             </li>
                             <li>
-                                <a data-th-href="@{/map.html}">
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
                                     <i class="fas fa-desktop"></i>Equipamentos</a>
                             </li>
                             <li>
-                                <a data-th-href="@{/map.html}">
-                                    <i class="fas fa-map-marker-alt"></i>Pessoal</a>
+                                <a data-toggle="modal" data-target="#MailModal" href="#">
+                                    <i class="fas fa-desktop"></i>Pessoal</a>
                             </li>
                         </ul>
                     </div>
@@ -139,7 +112,7 @@
             <!-- MENU SIDEBAR-->
             <aside class="menu-sidebar d-none d-lg-block">
                 <div class="logo">
-                    <a href="#">
+                    <a data-th-href="@{/TechMode/Painel/Chamados}">
                         <img data-th-src="@{/images/icon/logo.png}" alt="Tech Mode" />
                     </a>
                 </div>
@@ -151,10 +124,10 @@
                                     <i class="fas fa-tachometer-alt"></i>Chamados</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a data-th-href="@{/index.html}">Consultar Chamados</a>
+                                        <a data-th-href="@{/TechMode/Painel/Chamados}">Consultar Chamados</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar Chamados</a>
+                                        <a data-th-href="@{/TechMode/Painel/Chamado/Novo}">Cadastrar Chamados</a>
                                     </li>
                                 </ul>
                             </li>
@@ -163,40 +136,13 @@
                                     <i class="fas fa-chart-bar"></i>Ordens de Serviço</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a data-th-href="@{/index.html}">Consultar O.S</a>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico}">Consultar O.S</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar O.S</a>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Apontamentos}">Apontamentos</a>
                                     </li>
                                     <li>
-                                        <a data-th-href="@{/index2.html}">Apontamentos</a>
-                                    </li>
-                                    <li>
-                                        <a data-th-href="@{/index2.html}">Relatório de O.S</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="active has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-table"></i>Setores</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li>
-                                        <a data-th-href="@{/index.html}">Consultar Setores</a>
-                                    </li>
-                                    <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar Setores</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="active has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-table"></i>Equipes</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li>
-                                        <a data-th-href="@{/index.html}">Consultar Equipes</a>
-                                    </li>
-                                    <li>
-                                        <a data-th-href="@{/index2.html}">Cadastrar Equipes</a>
+                                        <a data-th-href="@{/TechMode/Painel/Ordem/Servico/Relatorio}">Relatório de O.S</a>
                                     </li>
                                 </ul>
                             </li>
@@ -213,12 +159,12 @@
                                 </ul>
                             </li>
                             <li>
-                                <a data-th-href="@{/chart.html}">
+                                 <a data-toggle="modal" data-target="#MailModal" href="#">
                                     <i class="fas fa-desktop"></i>Equipamentos</a>
                             </li>
                             <li>
-                                <a data-th-href="@{/table.html}">
-                                    <i class="fas fa-map-marker-alt"></i>Pessoal</a>
+                                 <a data-toggle="modal" data-target="#MailModal" href="#">
+                                    <i class="fas fa-desktop"></i>Pessoal</a>
                             </li>
                         </ul>
                     </nav>
@@ -245,7 +191,8 @@
                                             <div class="account-dropdown js-dropdown">
                                                 <div class="account-dropdown__body">
                                                     <div class="account-dropdown__item">
-                                                        <a data-th-href="@{/#}">
+                                                        <a data-th-href="@{/TechMode/Painel/{id}/Editar(id=${1})}">
+                                                            <!--(id=${atribute.login.id})}-->
                                                             <i class="zmdi zmdi-account"></i>Conta</a>
                                                     </div>
                                                 </div>
@@ -263,6 +210,73 @@
                 </header>
                 <!-- HEADER DESKTOP-->
 
+                <!--MODAL DE ENVIO DE EMAIL-->
+                <div class="modal fade" id="MailModal" tabindex="-1" role="dialog" aria-labelledby="MailModal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mediumModalLabel">Enviar E-Mail</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form data-th-action="@{/TechMode/Painel/Chamados/Enviar/E-mail}" data-th-object="${senderMail}" method="POST" class="form-horizontal">
+                                <div class="modal-body">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="nome" class=" form-control-label">Nome</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do responsável" data-th-classappend="${#fields.hasErrors('nome')}? is-invalid" data-th-field="*{nome}">
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('nome')}" data-th-errors="*{nome}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="email" class=" form-control-label">Destinatário</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="email" name="responsavel" placeholder="E-mail do responsável" class="form-control" data-th-classappend="${#fields.hasErrors('email')}? is-invalid" data-th-field="*{email}">
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="assunto" class=" form-control-label">Assunto</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="assunto" name="assunto" placeholder="Assunto" class="form-control" data-th-classappend="${#fields.hasErrors('assunto')}? is-invalid" data-th-field="*{assunto}">
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('assunto')}" data-th-errors="*{assunto}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="mensagem" class=" form-control-label">Mensagem</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">              
+                                            <textarea name="mensagem" id="assunto" rows="9" placeholder="Mensagem" class="form-control" data-th-classappend="${#fields.hasErrors('mensagem')}? is-invalid" data-th-field="*{mensagem}"></textarea>
+                                            <div class="alert alert-danger"  data-th-if="${#fields.hasErrors('mensagem')}" data-th-errors="*{mensagem}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--END MODAL DE ENVIO DE EMAIL-->
+
                 <!-- MAIN CONTENT-->
                 <div class="main-content">
                     <div class="section__content section__content--p30">
@@ -271,31 +285,43 @@
                                 <div class="col-md-12">
                                     <!-- DATA TABLE -->
                                     <h3 class="title-5 m-b-35">Chamados</h3>
+                                    <div data-th-if="${mensagemSucesso != null}" data-th-text="${mensagemSucesso}" class="alert alert-success" role="alert"></div>
                                     <div class="table-data__tool">
-                                        <div class="table-data__tool-left">
-                                            <div class="rs-select2--light rs-select2--md">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">Prioridade</option>
-                                                    <option value="">Baixa</option>
-                                                    <option value="">Média</option>
-                                                    <option value="">Alta</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
+                                        <form data-th-action="@{/TechMode/Painel/Chamados/Filtrar}" method="GET" data-th-object="${filterRel}">
+                                            <div class="table-data__tool-left">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        De:
+                                                        <section class="card">
+                                                            <div class="card-body text-secondary">
+                                                                <input type="date" name="date-de" id="date-de" data-th-classappend="${#fields.hasErrors('dtInicio')}? is-invalid" data-th-field="*{dtInicio}">
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                    <div class="col">
+                                                        Até:
+                                                        <section class="card">
+                                                            <div class="card-body text-secondary">
+                                                                <input type="date" name="date-ate" id="date-ate" data-th-classappend="${#fields.hasErrors('dtFinal')}? is-invalid" data-th-field="*{dtFinal}">
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                    <div class="col">
+                                                        <section class="card" style="margin-top: 25px; height: 67.9px">
+                                                            <div class="card-body text-secondary">
+                                                                <button type="submit">
+                                                                    <i class="zmdi zmdi-filter-list"></i> Filtrar</button>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="rs-select2--light rs-select2--sm">
-                                                <select class="js-select2" name="time">
-                                                    <option selected="selected">Hoje</option>
-                                                    <option value="">3 Dias</option>
-                                                    <option value="">1 Semana</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                            <button class="au-btn-filter">
-                                                <i class="zmdi zmdi-filter-list"></i>Filtrar</button>
-                                        </div>
+                                        </form>
                                         <div class="table-data__tool-right">
-                                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                                <i class="zmdi zmdi-plus"></i>Adicionar Chamado</button>
+                                            <section style="margin-top: 25px; height: 67.9px">
+                                                <a class="au-btn au-btn-icon au-btn--green au-btn--small" data-th-href="@{/TechMode/Painel/Chamado/Novo}">
+                                                    <i class="zmdi zmdi-plus"></i>Adicionar Chamado</a>
+                                            </section>
                                         </div>
                                     </div>
                                     <div class="table-responsive table-responsive-data2">
@@ -312,33 +338,31 @@
                                                     <th></th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr class="tr-shadow">
-                                                    <td>1</td>
-                                                    <td class="desc">Titulo Chamando</td>
+                                            <tbody data-th-fragment="tableBody(tableData)">
+                                                <tr class="tr-shadow" data-th-each="chamado : ${tableData}">
+                                                    <td data-th-text="${chamado.id}"></td>
+                                                    <td class="desc" data-th-text="${chamado.titulo}"></td>
                                                     <td>
-                                                        <span class="block-email">lori@example.com</span>
+                                                        <span class="block-email" data-th-text="${chamado.responsavel}"></span>
                                                     </td>
-                                                    <td>2018-09-27</td>
-                                                    <td>2018-09-27</td>
-                                                    <td>
-                                                        <span class="status--process">Processed</span>
-                                                    </td>
-                                                    <td>Técnico</td>
+                                                    <td data-th-text="${#temporals.format(chamado.dhInclusao, 'dd-MM-yyyy')}"></td>
+                                                    <td data-th-text="${#temporals.format(chamado.dhEncerrado, 'dd-MM-yyyy')}"></td>
+                                                    <td class="status--process" data-th-text="${chamado.statusChamado.status}"></td>
+                                                    <td data-th-text="${chamado.tecnico.nome}"></td>
                                                     <td>
                                                         <div class="table-data-feature">
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Enviar e-mail">
+                                                            <button type="button" class="item" data-placement="top"
+                                                                    title="Enviar e-mail" data-toggle="modal" data-target="#MailModal">
                                                                 <i class="zmdi zmdi-mail-send"></i>
                                                             </button>
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Editar">
+                                                            <a class="item" data-toggle="tooltip" data-placement="top"
+                                                               title="Editar" data-th-href="@{/TechMode/Painel/{id}/Chamados/Editar(id=${chamado.id})}">
                                                                 <i class="zmdi zmdi-edit"></i>
-                                                            </button>
-                                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                                    title="Deletar">
+                                                            </a>
+                                                            <a class="item" data-toggle="tooltip" data-placement="top"
+                                                               title="Deletar"data-th-href="@{/TechMode/Painel/{id}/Chamados/Deletar(id=${chamado.id})}">
                                                                 <i class="zmdi zmdi-delete"></i>
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -362,7 +386,6 @@
                 <!-- END MAIN CONTENT-->
                 <!-- END PAGE CONTAINER-->
             </div>
-
         </div>
 
         <!-- Jquery JS-->

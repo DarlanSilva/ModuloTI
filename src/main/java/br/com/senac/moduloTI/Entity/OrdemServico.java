@@ -1,34 +1,38 @@
 package br.com.senac.moduloTI.Entity;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author Darlan.Silva
+ * @author Darlan Silva
  */
-
 @Entity
-@Table(name = "TB_STATUSCHAMADO")
-public class StatusChamado{
+@Table(name="OS_ORDEMSERVICO")
+public class OrdemServico {
     
     @Id
     @Column(name = "PK_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Size(min = 1, max = 60)
+    @NotBlank(message = "CAMPO TITULO DA OS É OBRIGATÓRIO")
+    @Column(name = "DS_TITULO")
+    private String titulo;
     
-    @Size(min = 1, max = 40)
-    @NotBlank(message = "STATUS É OBRIGATÓRIO")
-    @Column(name = "DS_STATUS")
-    private String status;
+    @ManyToOne
+    @JoinColumn(name = "FK_CHAMADO")
+    private Chamado chamado;
     
     @Column(name = "TG_INATIVO")
     private int inativo;
@@ -39,12 +43,13 @@ public class StatusChamado{
     @Column(name = "DH_ALTERACAO", nullable = true, insertable = true, updatable = true)
     private LocalDateTime dhAlteracao;
 
-    public StatusChamado() {
+    public OrdemServico() {
     }
 
-    public StatusChamado(Integer id, String status, int inativo, LocalDateTime dhInclusao, LocalDateTime dhAlteracao) {
+    public OrdemServico(Integer id, String titulo, Chamado chamado, int inativo, LocalDateTime dhInclusao, LocalDateTime dhAlteracao) {
         this.id = id;
-        this.status = status;
+        this.titulo = titulo;
+        this.chamado = chamado;
         this.inativo = inativo;
         this.dhInclusao = dhInclusao;
         this.dhAlteracao = dhAlteracao;
@@ -58,12 +63,20 @@ public class StatusChamado{
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Chamado getChamado() {
+        return chamado;
+    }
+
+    public void setChamado(Chamado chamado) {
+        this.chamado = chamado;
     }
 
     public int getInativo() {
@@ -89,6 +102,7 @@ public class StatusChamado{
     public void setDhAlteracao(LocalDateTime dhAlteracao) {
         this.dhAlteracao = dhAlteracao;
     }
+    
     
     
 }
