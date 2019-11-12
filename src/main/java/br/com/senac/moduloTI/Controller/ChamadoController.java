@@ -153,7 +153,7 @@ public class ChamadoController {
             chamado.setDhInclusao(LocalDateTime.now());
             chamado.setInativo(0);
         }
-        
+             
         // Chamando finalizado
         if (chamado.getStatusChamado().getStatus().equalsIgnoreCase("FINALIZADO")) {
             chamado.setDhEncerrado(LocalDateTime.now());
@@ -161,6 +161,7 @@ public class ChamadoController {
 
         chamadoSalvo = chamadoRepo.save(chamado);
         chamado.setId(chamadoSalvo.getId());
+        chamado.setDhInclusao(chamadoSalvo.getDhInclusao());
         chamadoEmail(chamado);
 
         if (osCriada == 0) {
