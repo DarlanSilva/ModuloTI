@@ -2,7 +2,9 @@ package br.com.senac.moduloTI.Configuration;
 
 import br.com.senac.moduloTI.Controller.ChamadoController;
 import br.com.senac.moduloTI.Controller.ControllerActiver;
+import br.com.senac.moduloTI.Controller.LoginController;
 import br.com.senac.moduloTI.Controller.OrdemServicoController;
+import br.com.senac.moduloTI.Controller.TecnicoController;
 import br.com.senac.moduloTI.Entity.SessionAtribute;
 import java.util.concurrent.TimeUnit;
 import org.springframework.cache.CacheManager;
@@ -25,7 +27,8 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
  * @author Darlan Silva
  */
 @SpringBootConfiguration
-@ComponentScan(basePackageClasses = {ChamadoController.class, OrdemServicoController.class, SessionAtribute.class, ControllerActiver.class})
+@ComponentScan(basePackageClasses = {ChamadoController.class, OrdemServicoController.class, SessionAtribute.class, ControllerActiver.class,
+    TecnicoController.class, OrdemServicoController.class, LoginController.class})
 @EnableCaching
 public class AppWebConfiguration implements WebMvcConfigurer {
 
