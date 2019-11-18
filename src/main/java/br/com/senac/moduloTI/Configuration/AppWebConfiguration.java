@@ -28,7 +28,7 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
  */
 @SpringBootConfiguration
 @ComponentScan(basePackageClasses = {ChamadoController.class, OrdemServicoController.class, SessionAtribute.class, ControllerActiver.class,
-    TecnicoController.class, OrdemServicoController.class, LoginController.class})
+    TecnicoController.class, OrdemServicoController.class})
 @EnableCaching
 public class AppWebConfiguration implements WebMvcConfigurer {
 
