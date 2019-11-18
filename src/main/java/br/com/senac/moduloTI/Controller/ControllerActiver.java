@@ -24,7 +24,7 @@ public class ControllerActiver {
 
     @ModelAttribute("sessionAtribute")
     public SessionAtribute getSessionAtribute() {
-        sessionAtribute.setLogin(new Login());
+        //sessionAtribute.setLogin(new Login());
         return sessionAtribute;
     }
 

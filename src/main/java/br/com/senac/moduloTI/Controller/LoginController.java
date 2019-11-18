@@ -57,7 +57,6 @@ public class LoginController {
         Optional<Login> usuario = loginRepo.findByUser(username);
         // GUARDA O USUÁRIO LOGADO NA SESSÃO
         if (usuario.isPresent() == true) {
-            System.out.println(usuario.get().getId() + usuario.get().getUser());
             sessionAtribute.setLogin(usuario.get());
         } else {
             //redirectAttributes.addFlashAttribute("mensagem", "Usúario ou Senha Inválidos!!");
