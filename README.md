@@ -45,7 +45,7 @@ O incluir ou editar um chamado um e-mail automático será disparado, nela é po
 
 ### Classes relacionadas: 
 - **Entity:**
-  - [OrdemServico](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Entity/OrdemServico.java"OrdemServico")
+  - [OrdemServico](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Entity/OrdemServico.java "OrdemServico")
 - **Controller:**
   - [OrdemServicoController;](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Controller/OrdemServicoController.java "OrdemServicoController")
  - **Repository:**
