@@ -45,7 +45,6 @@
                             </div>
                             <div class="login-form">
                                 <form data-th-action="@{/TechMode/Login}" method="POST">
-                                    <div data-th-if="${mensagem != null}" data-th-text="${mensagem}" class="alert alert-success" role="alert"></div>
                                     <div class="alert alert-danger" data-th-if="${param.error != null}" >
                                         <!-- <span class="alert alert-info" data-th-text="${messageSource}"></span> --> 
                                         <span class="alert alert-info" >E-mail ou Senha incorreto!</span>

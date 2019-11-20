@@ -5,6 +5,7 @@ import br.com.senac.moduloTI.Entity.Login;
 import br.com.senac.moduloTI.Entity.SenderMail;
 import br.com.senac.moduloTI.Entity.SessionAtribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,6 +24,7 @@ public class ControllerActiver {
     private SessionAtribute sessionAtribute;
 
     @ModelAttribute("sessionAtribute")
+    @Cacheable(value = "session-atribute")
     public SessionAtribute getSessionAtribute() {
         return sessionAtribute;
     }
