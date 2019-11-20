@@ -66,7 +66,7 @@ Todos os Chamados e suas respectivas O.S são listadas aqui, sendo possível fil
 - **Entity:**
   - [Apontamento;](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Entity/Apontamento.java "Apontamento") 
 - **Repository:** 
-  - [ApontamentoRepository](https://github.com/DarlanSilva/ModuloTI/tree/master/src/main/java/br/com/senac/moduloTI/Repository "ApontamentoRepository")  
+  - [ApontamentoRepository](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Repository/ApontamentoRepository.java "ApontamentoRepository")  
 
 Nela é possível editar, enviar e-mail, filtrar, e excluir um apontamento. 
 
@@ -82,9 +82,9 @@ Nela é possível editar, enviar e-mail, filtrar, e excluir um apontamento.
 - **Entity:** 
   - [Tecnico;](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Entity/Tecnico.java "Tecnico") 
 - **Controller:**
-  - [TecnicoController;](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Controller/TecnicoController.java"TecnicoController") 
+  - [TecnicoController;](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Controller/TecnicoController.java "TecnicoController") 
 - **Repository:** 
-  - [TecnicoRepository.](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Repository/TecnicoRepository.java"TecnicoRepository")  
+  - [TecnicoRepository.](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Repository/TecnicoRepository.java "TecnicoRepository")  
   
 Nela é possível filtrar o técnico por nome, incluir e editar um técnico e deleta-lo. 
 
@@ -102,7 +102,7 @@ Nela é possível filtrar o técnico por nome, incluir e editar um técnico e de
 - **Configuration:**
   - [AppWebConfiguration;](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Configuration/AppWebConfiguration.java "AppWebConfiguration") 
 - **Controller:** 
-  - [ChamadoController.](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Controller/ChamadoController.java"ChamadoController") 
+  - [ChamadoController.](https://github.com/DarlanSilva/ModuloTI/blob/master/src/main/java/br/com/senac/moduloTI/Controller/ChamadoController.java "ChamadoController") 
 
 Nela é possível enviar e-mail avulsos. 
 
