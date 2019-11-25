@@ -1,5 +1,6 @@
 package br.com.senac.moduloTI.Repository;
 
+import br.com.senac.moduloTI.Entity.Chamado;
 import br.com.senac.moduloTI.Entity.OrdemServico;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,5 +29,8 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Obje
     @Query("Select o from OrdemServico o left join Chamado c on c.id = o.chamado"
             + " where c.dhInclusao <= :dhInclusaoFin")
     public List<OrdemServico> findAllByDhInclusaoFin(LocalDateTime dhInclusaoFin);
+    
+    @Query("Select o from OrdemServico o where o.chamado.id = :chamadoId")
+    public List<OrdemServico> findAllByChamado(Integer chamadoId);
 
 }

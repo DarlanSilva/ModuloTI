@@ -293,7 +293,7 @@
                                                 <input type="hidden" data-th-if="*{id != null}" data-th-field="*{id}" />
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="titulo" class=" form-control-label">Título</label>
+                                                        <label for="titulo" class=" form-control-label">Título*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título do Chamando" data-th-classappend="${#fields.hasErrors('titulo')}? is-invalid" data-th-field="*{titulo}">
@@ -304,7 +304,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="responsavel" class=" form-control-label">Responsável</label>
+                                                        <label for="responsavel" class=" form-control-label">Responsável*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="text" id="responsavel" name="responsavel" placeholder="Responsável do chamado" class="form-control" data-th-classappend="${#fields.hasErrors('responsavel')}? is-invalid" data-th-field="*{responsavel}">
@@ -315,7 +315,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="emailResponsavel" class=" form-control-label">Responsável</label>
+                                                        <label for="emailResponsavel" class=" form-control-label">E-mail do Responsável*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="email" id="emailResponsavel" name="emailResponsavel" placeholder="E-mail do responsável do chamado" class="form-control" data-th-classappend="${#fields.hasErrors('emailResponsavel')}? is-invalid" data-th-field="*{emailResponsavel}">
@@ -326,7 +326,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="chamado" class=" form-control-label">Chamado</label>
+                                                        <label for="chamado" class=" form-control-label">Chamado*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">              
                                                         <textarea name="descricao" id="descricao" rows="9" placeholder="Descrição do chamado" class="form-control" data-th-classappend="${#fields.hasErrors('descricao')}? is-invalid" data-th-field="*{descricao}"></textarea>
@@ -337,7 +337,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="statusChamado" class=" form-control-label">Status do Chamado</label>
+                                                        <label for="statusChamado" class=" form-control-label">Status do Chamado*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <select name="statusChamado" id="statusChamado" class="form-control" data-th-classappend="${#fields.hasErrors('statusChamado')}? is-invalid"  data-th-field="*{statusChamado}">
@@ -350,7 +350,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="tecnico" class=" form-control-label">Técnico</label>
+                                                        <label for="tecnico" class=" form-control-label">Técnico*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <select name="tecnico" id="tecnico" class="form-control" data-th-classappend="${#fields.hasErrors('tecnico')}? is-invalid"  data-th-field="*{tecnico}">

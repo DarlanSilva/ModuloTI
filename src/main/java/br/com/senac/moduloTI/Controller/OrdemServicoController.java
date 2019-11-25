@@ -227,7 +227,17 @@ public class OrdemServicoController {
 
     @GetMapping("/{id}/Ordem/Servico/Deletar/Apontamento")
     public ModelAndView remover(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-
+        
+/*         List<Apontamento> apontamentos = apontamentoRepo.findAllByOS(id);
+        
+        if(!apontamentos.isEmpty()){
+             redirectAttributes.addFlashAttribute("mensagemSucesso",
+                "OS vinculado a apontamentos. Impossível deletar!");
+            ModelAndView mv = new ModelAndView("redirect:/TechMode/Painel/Ordem/Servico");
+            return mv;
+        }
+*/
+        
         apontamentoRepo.deleteById(id);
 
         redirectAttributes.addFlashAttribute("mensagemSucesso",

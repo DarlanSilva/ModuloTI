@@ -32,5 +32,6 @@ public interface ChamadoRepository extends JpaRepository<Chamado, Integer>{
             + " where c.dhInclusao <= :dhInclusaoFin")
     public List<Chamado> findAllByDhInclusaoFin(LocalDateTime  dhInclusaoFin);
     
-    
+    @Query("Select c from Chamado c where c.tecnico.id = :tecID")
+    public List<Chamado> findAllByTecnico(Integer tecID);
 }

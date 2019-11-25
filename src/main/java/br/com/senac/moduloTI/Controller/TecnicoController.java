@@ -1,14 +1,15 @@
 package br.com.senac.moduloTI.Controller;
 
+import br.com.senac.moduloTI.Entity.Chamado;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import br.com.senac.moduloTI.Entity.Tecnico;
+import br.com.senac.moduloTI.Repository.ChamadoRepository;
 import br.com.senac.moduloTI.Repository.TecnicoRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.Cacheable;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -32,6 +33,9 @@ public class TecnicoController {
 
     @Autowired
     private TecnicoRepository tecnicoRepository;
+    
+    @Autowired
+    private ChamadoRepository chamadoRepo;
 
     @GetMapping("/Cadastrar-Tecnico")
     public ModelAndView cadastroTech() {
@@ -92,6 +96,15 @@ public class TecnicoController {
 
     @GetMapping("/{id}/Tecnico/Deletar")
     public ModelAndView remover(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+
+        List<Chamado> chamados = chamadoRepo.findAllByTecnico(id);
+
+        if (!chamados.isEmpty()) {
+            redirectAttributes.addFlashAttribute("mensagemSucesso",
+                    "Técnico ativo no sistema. Impossível deletar!");
+            ModelAndView mv = new ModelAndView("redirect:/TechMode/Painel/Consultar-Tecnico");
+            return mv;
+        }
 
         tecnicoRepository.deleteById(id);
 

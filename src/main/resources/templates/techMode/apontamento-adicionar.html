@@ -293,7 +293,7 @@
                                                 <input type="hidden" data-th-if="*{id != null}" data-th-field="*{id}" />
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="titulo" class=" form-control-label">Título</label>
+                                                        <label for="titulo" class=" form-control-label">Título*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título do apontamento" data-th-classappend="${#fields.hasErrors('titulo')}? is-invalid" data-th-field="*{titulo}">
@@ -304,7 +304,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="responsavel" class=" form-control-label">Tec. Responsável</label>
+                                                        <label for="responsavel" class=" form-control-label">Tec. Responsável*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="text" id="responsavel" name="responsavel" placeholder="Responsável do apontamento" class="form-control" data-th-classappend="${#fields.hasErrors('responsavel')}? is-invalid" data-th-field="*{responsavel}">
@@ -315,7 +315,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="nr-os" class=" form-control-label">NR. OS</label>
+                                                        <label for="nr-os" class=" form-control-label">NR. OS*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="number" id="nr-os" name="nr-os" placeholder="Nr. OS" class="form-control" readonly data-th-classappend="${#fields.hasErrors('os.id')}? is-invalid" data-th-field="*{os.id}">
@@ -323,7 +323,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="os-titulo" class=" form-control-label">Título da OS</label>
+                                                        <label for="os-titulo" class=" form-control-label">Título da OS*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="text" id="os-titulo" name="os-titulo" placeholder="Título da OS" class="form-control" readonly data-th-classappend="${#fields.hasErrors('os.titulo')}? is-invalid" data-th-field="*{os.titulo}">
@@ -331,7 +331,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="qtHoras" class=" form-control-label">Qt. Horas</label>
+                                                        <label for="qtHoras" class=" form-control-label">Qt. Horas*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <input type="number" id="qtHoras" name="qtHoras" placeholder="Horas" class="form-control" data-th-classappend="${#fields.hasErrors('qtHoras')}? is-invalid" data-th-field="*{qtHoras}">
@@ -342,7 +342,7 @@
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="descricao" class=" form-control-label">Descricão das Horas</label>
+                                                        <label for="descricao" class=" form-control-label">Descricão das Horas*</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">              
                                                         <textarea name="descricao" id="descricao" rows="9" placeholder="Descricão das Horas" class="form-control" data-th-classappend="${#fields.hasErrors('descricao')}? is-invalid" data-th-field="*{descricao}"></textarea>

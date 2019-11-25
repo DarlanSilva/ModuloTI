@@ -177,6 +177,16 @@ public class ChamadoController {
     @GetMapping("/{id}/Chamados/Deletar")
     public ModelAndView remover(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 
+        
+        List<OrdemServico> os = osRepo.findAllByChamado(id);
+        
+        if(!os.isEmpty()){
+             redirectAttributes.addFlashAttribute("mensagemSucesso",
+                "Chamado vinculado a Ordens de serviço. Impossível deletar!");
+            ModelAndView mv = new ModelAndView("redirect:/TechMode/Painel/Chamados");
+            return mv;
+        }
+        
         chamadoRepo.deleteById(id);
 
         redirectAttributes.addFlashAttribute("mensagemSucesso",

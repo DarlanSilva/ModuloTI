@@ -86,10 +86,17 @@ public class LoginController {
     public ModelAndView salvar(@ModelAttribute("login") @Valid Login login, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
-            ModelAndView mv = new ModelAndView("login/login-cadastro");
+            ModelAndView mv = new ModelAndView("login/Login-Editar");
             mv.addObject(login);
             return mv;
         }
+
+        if (login.getPassword().isEmpty() || login.getPassword() == null) {
+            ModelAndView mv = new ModelAndView("login/Login-Editar");
+            mv.addObject(login);
+            return mv;
+        }
+
         Optional<Login> verificarLogin = loginRepo.findByUser(login.getUser());
 
         if (verificarLogin.isPresent() == true) {
